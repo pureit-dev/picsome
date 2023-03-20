@@ -26,13 +26,19 @@ function ContextProvider({ children }) {
 		setAllPhotos(newPhotos)
 	}
 
-	const addToCart = (newItem) => {
-		setCartItems((prevCart) => [...prevCart, newItem])
+	const updateCart = (newItem) => {
+		if (cartItems.includes(newItem)) {
+			setCartItems((prevCart) =>
+				prevCart.filter((item) => item !== newItem)
+			)
+		} else {
+			setCartItems((prevCart) => [...prevCart, newItem])
+		}
 	}
 
 	return (
 		<Context.Provider
-			value={{ allPhotos, toggleFavourite, cartItems, addToCart }}
+			value={{ allPhotos, toggleFavourite, cartItems, updateCart }}
 		>
 			{children}
 		</Context.Provider>

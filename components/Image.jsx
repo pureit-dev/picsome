@@ -3,7 +3,7 @@ import { Context } from "../Context"
 
 function Image({ img, className }) {
 	const [isHovered, setIsHovered] = React.useState(false)
-	const { toggleFavourite, addToCart, cartItems } = React.useContext(Context)
+	const { toggleFavourite, updateCart, cartItems } = React.useContext(Context)
 	const { id, isFavorite, url } = img
 	const heartIcon = () => {
 		if (isFavorite) {
@@ -28,14 +28,14 @@ function Image({ img, className }) {
 			return (
 				<i
 					className="ri-shopping-cart-fill cart"
-					onClick={() => addToCart(img)}
+					onClick={() => updateCart(img)}
 				></i>
 			)
 		} else if (isHovered) {
 			return (
 				<i
 					className="ri-add-circle-line cart"
-					onClick={() => addToCart(img)}
+					onClick={() => updateCart(img)}
 				></i>
 			)
 		}
